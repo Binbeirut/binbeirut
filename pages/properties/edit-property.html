@@ -1,0 +1,1685 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>Edit Property - BinBeirut</title>
+  <!-- base:css -->
+  <link rel="stylesheet" href="../../vendors/mdi/css/materialdesignicons.min.css">
+  <link rel="stylesheet" href="../../vendors/base/vendor.bundle.base.css">
+  <!-- endinject -->
+  <!-- plugin css for this page -->
+  <link rel="stylesheet" href="../../vendors/select2/select2.min.css">
+  <link rel="stylesheet" href="../../vendors/select2-bootstrap-theme/select2-bootstrap.min.css">
+  <link rel="stylesheet" href="../../vendors/simplemde/simplemde.min.css">
+  <link rel="stylesheet" href="../../vendors/dropzone/dropzone.css">
+  <link rel="stylesheet" href="../../vendors/dropify/dropify.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.3/css/intlTelInput.min.css" />
+  <link rel="stylesheet" href="../../vendors/bootstrap-datepicker/bootstrap-datepicker.min.css">
+  <link rel="stylesheet" href="../../vendors/x-editable/bootstrap-editable.css">
+
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.3/js/intlTelInput.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.3/js/utils.min.js"></script>
+  <!-- End plugin css for this page -->
+  <!-- inject:css -->
+  <link rel="stylesheet" href="../../css/vertical-layout-light/style.css">
+  <!-- endinject -->
+  <link rel="shortcut icon" href="../../images/favicon.png" />
+
+  <script>
+    function displayDivDemo(id, elementValue) {
+      document.getElementById(id).style.display = elementValue.value == 1 ? 'block' : 'none';
+    }
+  </script>
+
+
+  <script>
+    function displayDivDemo2(id, elementValue) {
+      document.getElementById(id).style.display = elementValue.value == 1 ? 'block' : 'none';
+    }
+  </script>
+
+  <script>
+    function displayDivDemo3(id, elementValue) {
+      document.getElementById(id).style.display = elementValue.value == 1 ? 'block' : 'none';
+    }
+  </script>
+
+  <script>
+    var handle_dependent_selects = function ($parent) {
+      var $child = document.getElementById($parent.getAttribute('data-child-id')),
+        $selected = $parent.options[$parent.selectedIndex],
+        parent_val = $selected.value;
+
+      for (var i = 0; i < $child.options.length; i++) {
+        var $option = $child.options[i];
+        if ($option.value != '') {
+          $option.setAttribute('hidden', true);
+        }
+      };
+
+      if (parent_val) {
+        var child_options = $selected.getAttribute('data-child-options'),
+          child_options_array = child_options.split('|#');
+
+        for (i = 0; i < $child.options.length; i++) {
+          var $option = $child.options[i];
+          if ($option.value == "") {
+            $option.innerText = "--------";
+            continue;
+          }
+          if (child_options_array.indexOf($option.value) != -1) {
+            $option.removeAttribute('hidden');
+          }
+        };
+
+      } else {
+        var show_text = $child.getAttribute('data-text-if-parent-empty');
+        if (!show_text) {
+          show_text = 'Select ' + $parent.name;
+        }
+        for (i = 0; i < $child.options.length; i++) {
+          var $option = $child.options[$child.selectedIndex];
+          if ($option.value == "") {
+            $option.innerText = '- ' + show_text + ' -';
+            break;
+          }
+        };
+      }
+    }
+
+    document.addEventListener('DOMContentLoaded', function () {
+      var $parents = document.getElementsByClassName('dependent-selects__parent');
+      for (var i = 0; i < $parents.length; i++) {
+        handle_dependent_selects($parents[i]);
+        $parents[i].addEventListener('change', function () {
+          handle_dependent_selects(this)
+        })
+      }
+    }, false);
+
+  </script>
+
+
+  <style>
+    .hide {
+      /* color: #fff; */
+      /* padding: 10px; */
+      display: none;
+      /* margin-top: 20px; */
+      /* border: 1px solid #ccc; */
+      /* border-radius: 4px; */
+    }
+
+    #hideValuesOnSelect {
+      display: none;
+    }
+
+    #hideValuesOnSelect2 {
+      display: none;
+    }
+
+    #hideValuesOnSelect3 {
+      display: none;
+    }
+
+    /* ::placeholder {
+      color: lightseagreen;
+      opacity: 1;
+    } */
+  </style>
+</head>
+
+
+
+<body>
+  <div class="container-scroller">
+    <!-- partial:../../partials/_navbar.html -->
+    <nav class="navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row">
+      <div class="text-left navbar-brand-wrapper d-flex align-items-center justify-content-between">
+        <a class="navbar-brand brand-logo" href="../../index.html"></a>
+        <a class="navbar-brand brand-logo-mini" href="../../index.html"><img src="../../../../images/logo-mini.svg"
+            alt="logo" /></a>
+        <button class="navbar-toggler align-self-center" type="button" data-toggle="minimize">
+          <span class="mdi mdi-menu"></span>
+        </button>
+      </div>
+      <div class="navbar-menu-wrapper d-flex align-items-center justify-content-end">
+        <!-- <ul class="navbar-nav">
+          <li class="nav-item  dropdown d-none align-items-center d-lg-flex d-none">
+            <a class="dropdown-toggle btn btn-outline-secondary btn-fw" href="#" data-toggle="dropdown"
+              id="pagesDropdown">
+              <span class="nav-profile-name">Pages</span>
+            </a>
+            <div class="dropdown-menu dropdown-menu-right navbar-dropdown" aria-labelledby="pagesDropdown">
+              <a class="dropdown-item">
+                <i class="mdi mdi-settings text-primary"></i>
+                Settings
+              </a>
+              <a class="dropdown-item">
+                <i class="mdi mdi-logout text-primary"></i>
+                Logout
+              </a>
+            </div>
+          </li>
+          <li class="nav-item dropdown align-items-center d-lg-flex d-none">
+            <a class="dropdown-toggle btn btn-outline-secondary btn-fw" href="#" data-toggle="dropdown"
+              id="appDropdown">
+              <span class="nav-profile-name">Apps</span>
+            </a>
+            <div class="dropdown-menu dropdown-menu-right navbar-dropdown" aria-labelledby="appDropdown">
+              <a class="dropdown-item">
+                <i class="mdi mdi-settings text-primary"></i>
+                Settings
+              </a>
+              <a class="dropdown-item">
+                <i class="mdi mdi-logout text-primary"></i>
+                Logout
+              </a>
+            </div>
+          </li>
+        </ul> -->
+        <ul class="navbar-nav navbar-nav-right">
+          <li class="nav-item nav-search d-none d-lg-flex">
+            <div class="input-group">
+              <div class="input-group-prepend">
+                <span class="input-group-text" id="search">
+                  <i class="mdi mdi-magnify"></i>
+                </span>
+              </div>
+              <input type="text" class="form-control" placeholder="Type to search..." aria-label="search"
+                aria-describedby="search">
+            </div>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link count-indicator dropdown-toggle d-flex align-items-center justify-content-center"
+              id="notificationDropdown" href="#" data-toggle="dropdown">
+              <i class="mdi mdi-bell-outline mx-0"></i>
+            </a>
+            <div class="dropdown-menu dropdown-menu-right navbar-dropdown preview-list"
+              aria-labelledby="notificationDropdown">
+              <p class="mb-0 font-weight-normal float-left dropdown-header">Notifications</p>
+              <a class="dropdown-item preview-item">
+                <div class="preview-thumbnail">
+                  <div class="preview-icon bg-success">
+                    <i class="mdi mdi-information mx-0"></i>
+                  </div>
+                </div>
+                <div class="preview-item-content">
+                  <h6 class="preview-subject font-weight-normal">Application Error</h6>
+                  <p class="font-weight-light small-text mb-0 text-muted">
+                    Just now
+                  </p>
+                </div>
+              </a>
+              <a class="dropdown-item preview-item">
+                <div class="preview-thumbnail">
+                  <div class="preview-icon bg-warning">
+                    <i class="mdi mdi-settings mx-0"></i>
+                  </div>
+                </div>
+                <div class="preview-item-content">
+                  <h6 class="preview-subject font-weight-normal">Settings</h6>
+                  <p class="font-weight-light small-text mb-0 text-muted">
+                    Private message
+                  </p>
+                </div>
+              </a>
+              <a class="dropdown-item preview-item">
+                <div class="preview-thumbnail">
+                  <div class="preview-icon bg-info">
+                    <i class="mdi mdi-account-box mx-0"></i>
+                  </div>
+                </div>
+                <div class="preview-item-content">
+                  <h6 class="preview-subject font-weight-normal">New user registration</h6>
+                  <p class="font-weight-light small-text mb-0 text-muted">
+                    2 days ago
+                  </p>
+                </div>
+              </a>
+            </div>
+          </li>
+                    <!-- <li class="nav-item dropdown">
+            <a class="nav-link count-indicator dropdown-toggle d-flex justify-content-center align-items-center"
+              id="messageDropdown" href="#" data-toggle="dropdown">
+              <i class="mdi mdi-email-outline mx-0"></i>
+              <p class="notification-ripple notification-ripple-bg">
+                <span class="ripple notification-ripple-bg"></span>
+                <span class="ripple notification-ripple-bg"></span>
+                <span class="ripple notification-ripple-bg"></span>
+              </p>
+            </a>
+            <div class="dropdown-menu dropdown-menu-right navbar-dropdown preview-list"
+              aria-labelledby="messageDropdown">
+              <p class="mb-0 font-weight-normal float-left dropdown-header">Messages</p>
+              <a class="dropdown-item preview-item">
+                <div class="preview-thumbnail">
+                  <img src="https://via.placeholder.com/36x36" alt="image" class="profile-pic">
+                </div>
+                <div class="preview-item-content flex-grow">
+                  <h6 class="preview-subject ellipsis font-weight-normal">David Grey
+                  </h6>
+                  <p class="font-weight-light small-text text-muted mb-0">
+                    The meeting is cancelled
+                  </p>
+                </div>
+              </a>
+              <a class="dropdown-item preview-item">
+                <div class="preview-thumbnail">
+                  <img src="https://via.placeholder.com/36x36" alt="image" class="profile-pic">
+                </div>
+                <div class="preview-item-content flex-grow">
+                  <h6 class="preview-subject ellipsis font-weight-normal">Tim Cook
+                  </h6>
+                  <p class="font-weight-light small-text text-muted mb-0">
+                    New product launch
+                  </p>
+                </div>
+              </a>
+              <a class="dropdown-item preview-item">
+                <div class="preview-thumbnail">
+                  <img src="https://via.placeholder.com/36x36" alt="image" class="profile-pic">
+                </div>
+                <div class="preview-item-content flex-grow">
+                  <h6 class="preview-subject ellipsis font-weight-normal"> Johnson
+                  </h6>
+                  <p class="font-weight-light small-text text-muted mb-0">
+                    Upcoming board meeting
+                  </p>
+                </div>
+              </a>
+            </div>
+          </li> -->
+          <li class="nav-item nav-user-icon">
+            <a class="nav-link" href="#">
+              <img src="https://via.placeholder.com/37x37" alt="profile" />
+            </a>
+          </li>
+          <li class="nav-item nav-settings d-none d-lg-flex">
+            <a class="nav-link" href="../../index.html">
+              <i class="mdi mdi-logout"></i>
+            </a>
+          </li>
+        </ul>
+        <button class="navbar-toggler navbar-toggler-right d-lg-none align-self-center" type="button"
+          data-toggle="offcanvas">
+          <span class="mdi mdi-menu"></span>
+        </button>
+      </div>
+    </nav>
+    <!-- partial -->
+    <div class="container-fluid page-body-wrapper">
+      <nav class="sidebar sidebar-offcanvas" id="sidebar">
+        <ul class="nav">
+          <li class="nav-item nav-profile">
+            <div class="nav-link d-flex">
+              <div class="profile-image">
+                <img src="../logo.png" alt="image">
+              </div>
+              <div class="profile-name">
+                <p class="name">
+                  B in Beirut
+                </p>
+                <p class="designation">
+                  Administrator
+                </p>
+              </div>
+            </div>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="./propertyList.html" aria-expanded="true">
+              <i class="mdi mdi-shield-check menu-icon"></i>
+              <span class="menu-title">Properties</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="../prop-purpose/purposes.html">
+              <i class="mdi mdi-puzzle menu-icon"></i>
+              <span class="menu-title">Properties Purposes</span>
+            </a>
+          </li>
+
+          <li class="nav-item">
+            <a class="nav-link" data-toggle="collapse" href="#categories" aria-expanded="false"
+              aria-controls="categories">
+              <i class="mdi mdi-domain menu-icon"></i>
+              <span class="menu-title">Properties Categories</span>
+              <i class="menu-arrow"></i>
+            </a>
+            <div class="collapse" id="categories">
+              <ul class="nav flex-column sub-menu">
+                <li class="nav-item"> <a class="nav-link" href="../prop-categories/category.html">Category</a>
+                </li>
+                <li class="nav-item"> <a class="nav-link" href="../prop-categories/propertyType.html">Property type</a>
+                </li>
+              </ul>
+            </div>
+          </li>
+
+          <li class="nav-item">
+            <a class="nav-link" data-toggle="collapse" href="#features" aria-expanded="false" aria-controls="features">
+              <i class="mdi mdi-format-list-bulleted-type menu-icon"></i>
+              <span class="menu-title">Properties Features</span>
+              <i class="menu-arrow"></i>
+            </a>
+            <div class="collapse" id="features">
+              <ul class="nav flex-column sub-menu">
+                <li class="nav-item"> <a class="nav-link" href="../prop-features/ex-groups.html">Extra fields groups</a>
+                </li>
+                <li class="nav-item"> <a class="nav-link" href="../prop-features/ex.html">Extra fields</a></li>
+              </ul>
+            </div>
+          </li>
+
+
+          <li class="nav-item">
+            <a class="nav-link" data-toggle="collapse" href="#location" aria-expanded="false" aria-controls="location">
+              <i class="mdi mdi-home-map-marker menu-icon"></i>
+              <span class="menu-title">Properties Locations</span>
+              <i class="menu-arrow"></i>
+            </a>
+            <div class="collapse" id="location">
+              <ul class="nav flex-column sub-menu">
+                <li class="nav-item"> <a class="nav-link" href="./countries.html">Countries</a>
+                </li>
+                <li class="nav-item"> <a class="nav-link" href="./regions.html">Regions</a></li>
+                <li class="nav-item"> <a class="nav-link" href="./cities.html">Cities</a></li>
+              </ul>
+            </div>
+          </li>
+
+          <li class="nav-item">
+            <a class="nav-link" data-toggle="collapse" href="#user" aria-expanded="false" aria-controls="user">
+              <i class="mdi mdi-account-circle menu-icon"></i>
+              <span class="menu-title">Users Management</span>
+              <i class="menu-arrow"></i>
+            </a>
+            <div class="collapse" id="user">
+              <ul class="nav flex-column sub-menu">
+                <li class="nav-item"> <a class="nav-link" href="../roles.html">Roles and permissions</a></li>
+                <li class="nav-item"> <a class="nav-link" href="../users.html">Users</a></li>
+              </ul>
+            </div>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="../settings.html">
+              <i class="mdi mdi-settings menu-icon"></i>
+              <span class="menu-title">Settings</span>
+            </a>
+          </li>
+        </ul>
+      </nav>
+      <style>
+        .breadcrumb {
+          border: 0px;
+          padding-top: 2px;
+          padding-left: 0px;
+        }
+      </style>
+      <!-- partial -->
+      <div class="main-panel">
+        <div class="content-wrapper">
+          <div class="card-body" style="padding: 1.25rem 0 0 1.25rem;">
+            <h4>Edit Property</h4>
+            <ol class="breadcrumb">
+              <li class="breadcrumb-item"><a href="./propertyList.html">Properties</a></li>
+              <li class="breadcrumb-item active" aria-current="page">Edit Property</li>
+            </ol>
+            <div id="js-grid" class="pt-3"></div>
+          </div>
+          <div class="row">
+            <div class="col-12 col-lg-8 col-xl-8 grid-margin stretch-card" style="flex: 0 0 100%;max-width: 100%;">
+              <div class="card">
+                <div class="card-body">
+                  <h4 class="card-title" style="padding-bottom: 13px;">INFORMATION</h4>
+                  <div class="form-group">
+                    <label for="exampleInputUsername1">Title</label>
+                    <input type="text" class="form-control" id="exampleInputTitle" placeholder="Name"
+                      value="Achrafieh, Mar Mikhael">
+                  </div>
+                  <div class="form-group">
+                    <label for="exampleInputUsername1">Reference</label>
+                    <input type="text" class="form-control" id="exampleInputRef" placeholder="Ref" value="BB2257">
+                  </div>
+                  <div class="form-group">
+                    <label for="exampleInputcategory">Category</label>
+                    <select data-target="secondList" id="id_parent" data-child-id='id_child'
+                      class="dependent-selects__parent form-control">
+                      <!-- <option value="" selected disabled>Select an option</option> -->
+                      <option value="">--------</option>
+                      <option value="a" data-child-options="Apartment" selected>Residential</option>
+                      <option value="b" data-child-options="Office">Commercial</option>
+                      <option value="c" data-child-options="Roadside">Lands</option>
+                      <option value="d" data-child-options="Studio">Abroad</option>
+                    </select>
+                  </div>
+                  <div class="form-group">
+                    <label for="exampleInputtype">Type</label>
+                    <select id="id_child" class="dependent-selects__child form-control">
+                      <!-- <option value="" selected disabled>Select an option</option> -->
+                      <option value="">--------</option>
+                      <option value="Apartment" selected>Apartment</option>
+                      <option value="Office">Office</option>
+                      <option value="Roadside">Roadside</option>
+                      <option value="Studio">Studio</option>
+                    </select>
+                  </div>
+                  <div class="form-group">
+                    <label for="exampleInputpurpose">Purpose</label>
+                    <select class="js-example-basic-single w-100">
+                      <option value="" selected disabled>Select an option</option>
+                      <option value="For Rent">For Rent</option>
+                      <option value="For Sale" selected>For Sale</option>
+                      <option value="Sold">Sold</option>
+                    </select>
+                  </div>
+                  <div class="form-group">
+                    <label for="exampleInputdesc">Description</label>
+                    <textarea id="simpleMde">
+                      </textarea>
+                  </div>
+
+                </div>
+              </div>
+            </div>
+
+            <div id="a" class="hide col-12 col-lg-8 col-xl-8 grid-margin stretch-card">
+              <div class="card" style="margin-bottom: 1.75rem;">
+                <div class="card-body">
+                  <h4 class="card-title" style="padding-bottom: 13px;">OVERVIEW</h4>
+                  <div class="form-group">
+                    <label for="exampleInputUsername1">Area</label>
+                    <div style="display: flex; flex-direction: row;">
+                      <input value="350" type="text" id="" style="width: 250px;
+                      border: 1px solid ;
+                      font-weight: 500;
+                      font-size: .975rem;
+                      height: auto;">
+                      <div style="margin-left: 15px; margin-right: 15px;">Uni</div>
+                      <input value="m²" type="text" id="" style="width: 250px;
+                      border: 1px solid ;
+                      font-weight: 500;
+                      font-size: .975rem;
+                      height: auto;">
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label for="exampleInputlocation">Location</label>
+                    <select data-target="secondList" id="id_location" data-child-id='id_region'
+                      class="dependent-selects__parent form-control">
+                      <!-- <option value="" selected disabled>Select an option</option> -->
+                      <option value="">--------</option>
+                      <option value="Lebanon" data-child-options="Beirut" selected>Lebanon</option>
+                      <option value="France" data-child-options="Paris">France</option>
+                    </select>
+                  </div>
+
+                  <div class="form-group">
+                    <label for="exampleInputregion">Region</label>
+                    <select id="id_region" class="dependent-selects__child dependent-selects__parent form-control"
+                      data-child-id='id_city'>
+                      <!-- <option value="" selected disabled>Select an option</option> -->
+                      <option value="">--------</option>
+                      <option value="Beirut" data-child-options="Ashrafieh" selected>Beirut</option>
+                      <option value="Paris" data-child-options="Luxembourg">Paris</option>
+                    </select>
+                  </div>
+
+                  <div class="form-group">
+                    <label for="exampleInputcity">Region</label>
+                    <select id="id_city" class="dependent-selects__child form-control">
+                      <!-- <option value="" selected disabled>Select an option</option> -->
+                      <option value="">--------</option>
+                      <option value="Ashrafieh" selected>Ashrafieh</option>
+                      <option value="Luxembourg">Luxembourg</option>
+                    </select>
+                  </div>
+
+                  <div class="form-group">
+                    <label for="exampleInputbuilding">Building Name</label>
+                    <input type="text" class="form-control" id="exampleInputbuilding" value="Monraue">
+                  </div>
+
+                  <div class="form-group">
+                    <label for="exampleInputaddress">Address</label>
+                    <input type="text" class="form-control" id="exampleInputaddress" value="near Skyline Tower">
+                  </div>
+
+                  <div class="form-group">
+                    <label for="exampleInputfloor">Floor</label>
+                    <input type="text" class="form-control" id="exampleInputfloor" value="8">
+                  </div>
+
+                  <div class="form-group">
+                    <label for="exampleInputBedroom">Bedroom</label>
+                    <select class="form-control">
+                      <option>1</option>
+                      <option>2</option>
+                      <option selected>3</option>
+                      <option>4</option>
+                      <option>5</option>
+                    </select>
+                  </div>
+
+                  <div class="form-group">
+                    <label for="exampleInputBathroom">Bathroom</label>
+                    <select class="form-control">
+                      <option>1</option>
+                      <option>2</option>
+                      <option selected>3</option>
+                      <option>4</option>
+                      <option>5</option>
+                    </select>
+                  </div>
+
+                  <div class="form-group">
+                    <label for="exampleInputParking">Parking</label>
+                    <select class="form-control">
+                      <option>1</option>
+                      <option>2</option>
+                      <option selected>3</option>
+                      <option>4</option>
+                    </select>
+                  </div>
+
+                </div>
+              </div>
+
+              <div class="card" style="margin-bottom: 1.75rem;">
+                <div class="card-body">
+                  <h4 class="card-title" style="padding-bottom: 13px;">Features</h4>
+                  <div class="form-group">
+                    <label for="exampleInputBathroom">Maid room</label>
+                    <select class="form-control">
+                      <option selected>1</option>
+                      <option>2</option>
+                    </select>
+                  </div>
+                  <div class="form-group">
+                    <label for="exampleInputParking">Heater</label>
+                    <select class="form-control">
+                      <option>1</option>
+                      <option>2</option>
+                      <option selected>3</option>
+                      <option>4</option>
+                      <option>5</option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+
+              <div class="card" style="margin-bottom: 1.75rem;">
+                <div class="card-body">
+                  <h4 class="card-title" style="padding-bottom: 13px;">CHARGES</h4>
+                  <label for="exampleInputBathroom">Charges</label>
+                  <div class="form-inline repeater">
+                    <div data-repeater-list="group-a">
+                      <div data-repeater-item class="d-flex mb-2">
+                        <label class="sr-only" for="inlineFormInputGroup1">Users</label>
+                        <div class="input-group mb-2 mr-sm-2 mb-sm-0">
+                          <div class="input-group-prepend">
+                            <!-- <span class="input-group-text">$</span> -->
+                            <select class="form-control">
+                              <option>$</option>
+                              <option>L.L</option>
+                            </select>
+                          </div>
+                          <input type="text" class="form-control form-control-sm" id="inlineFormInputGroup1"
+                            placeholder="Add Currency" value="2000">
+                        </div>
+                        <button data-repeater-delete type="button" class="btn btn-danger btn-sm icon-btn ml-2">
+                          <i class="mdi mdi-delete"></i>
+                        </button>
+                      </div>
+                    </div>
+                    <button data-repeater-create type="button" class="btn btn-info btn-sm icon-btn ml-2 mb-2">
+                      <i class="mdi mdi-plus"></i>
+                    </button>
+                  </div>
+                  <label for="exampleInputBathroom">Caution</label>
+                  <div class="form-inline repeater">
+                    <div data-repeater-list="group-a">
+                      <div data-repeater-item class="d-flex mb-2">
+                        <label class="sr-only" for="inlineFormInputGroup1">Users</label>
+                        <div class="input-group mb-2 mr-sm-2 mb-sm-0">
+                          <div class="input-group-prepend">
+                            <!-- <span class="input-group-text">$</span> -->
+                            <select class="form-control">
+                              <option>$</option>
+                              <option>L.L</option>
+                            </select>
+                          </div>
+                          <input type="text" class="form-control form-control-sm" id="inlineFormInputGroup1" value="0"
+                            placeholder="Add Currency">
+                        </div>
+                        <button data-repeater-delete type="button" class="btn btn-danger btn-sm icon-btn ml-2">
+                          <i class="mdi mdi-delete"></i>
+                        </button>
+                      </div>
+                    </div>
+                    <button data-repeater-create type="button" class="btn btn-info btn-sm icon-btn ml-2 mb-2">
+                      <i class="mdi mdi-plus"></i>
+                    </button>
+                  </div>
+                  <div class="form-group">
+                    <label for="exampleInputadd">Additional Information</label>
+                    <textarea id="simpleMde1">
+                    indulge yourself in this brand new flat located in mar mikhael.
+                    with simple spaces and nice ceiling height, it offers three master bedrooms, an independent open kitchen and an amazing sea 
+                    and mountain view.
+                    the materials are noble and have been chosen with a lot of taste.
+                    it comes with three underground parking spaces and a storage room.
+                    </textarea>
+                  </div>
+                </div>
+              </div>
+              <div class="card" style="margin-bottom: 1.75rem;">
+                <div class="card-body">
+                  <h4 class="card-title" style="padding-bottom: 13px;">PHOTO GALLERY</h4>
+                  <form action="/file-upload" class="dropzone" id="my-awesome-dropzone">
+                    <div><img src="achrafieh.jpg" alt="achrafieh" style="width:150px;height:150px"></div>
+                  </form>
+                </div>
+              </div>
+
+
+              <div class="card" style="margin-bottom: 1.75rem;">
+                <div class="card-body">
+                  <h4 class="card-title" style="padding-bottom: 13px;">CONTACT INFORMATION</h4>
+                  <div class="form-group">
+                    <label for="exampleInputOwner">Property owner</label>
+                    <input type="text" class="form-control" id="exampleInputOwner" value="Malik">
+                  </div>
+                  <div class="form-group">
+                    <label for="exampleInputPerson">Contact person</label>
+                    <input type="text" class="form-control" id="exampleInputPerson" value="Malik">
+                  </div>
+                  <div class="form-group">
+                    <label for="exampleInputnumber">Contact number</label>
+                    <input type="text" id="phone" value="+96176998551" />
+                  </div>
+                  <div class="form-group">
+                    <label for="exampleInputkey">Key location</label>
+                    <input type="text" class="form-control" id="exampleInputPkey" value="With owner">
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div id="2a" class="hide col-12 col-lg-4 col-xl-4 grid-margin stretch-card ">
+              <div class="card" style="margin-bottom: 1.75rem;">
+                <div class="card-body">
+                  <h4 class="card-title" style="padding-bottom: 13px;">PRICE</h4>
+                  <div class="form-inline repeater">
+                    <div data-repeater-list="group-a">
+                      <div data-repeater-item class="d-flex mb-2">
+                        <label class="sr-only" for="inlineFormInputGroup1">Users</label>
+                        <div class="input-group mb-2 mr-sm-2 mb-sm-0">
+                          <div class="input-group-prepend">
+                            <!-- <span class="input-group-text">$</span> -->
+                            <select class="form-control">
+                              <option>Total $</option>
+                              <option>LBP</option>
+                              <option>Lollard</option>
+                              <option>$ fresh</option>
+                            </select>
+                          </div>
+                          <input type="text" class="form-control form-control-sm" id="inlineFormInputGroup1"
+                            value="1650000" placeholder="Add Currency">
+                        </div>
+                        <button data-repeater-delete type="button" class="btn btn-danger btn-sm icon-btn ml-2">
+                          <i class="mdi mdi-delete"></i>
+                        </button>
+                      </div>
+                    </div>
+                    <button data-repeater-create type="button" class="btn btn-info btn-sm icon-btn ml-2 mb-2">
+                      <i class="mdi mdi-plus"></i>
+                    </button>
+                  </div>
+                </div>
+              </div>
+
+              <div class="card" style="margin-bottom: 1.75rem;">
+                <div class="card-body">
+                  <h4 class="card-title" style="padding-bottom: 13px;">VISIBILITY</h4>
+
+                  <div class="row">
+                    <div style="flex: 0 0 100%;padding-left: 15px;">
+                      <div class="form-check">
+                        <label class="form-check-label">
+                          <input type="checkbox" class="form-check-input" checked>
+                          Present on Property Finder CRM
+                        </label>
+                      </div>
+                      <div class="form-check">
+                        <label class="form-check-label">
+                          <input type="checkbox" class="form-check-input" checked>
+                          Present on website
+                        </label>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="card" style="margin-bottom: 1.75rem;">
+                <div class="card-body">
+                  <h4 class="card-title" style="padding-bottom: 13px;">STATUS</h4>
+                  <div class="form-group">
+                    <label for="exampleInputcategory">Category</label>
+                    <select onchange="displayDivDemo('hideValuesOnSelect', this)" class="form-control">
+                      <!-- <option value="" selected disabled>Select an option</option> -->
+                      <option value="">--------</option>
+                      <option value="0">Sold</option>
+                      <option value="1">Rented</option>
+                    </select>
+                  </div>
+
+                  <div id="hideValuesOnSelect" class="date box">
+                    <label for="hideValuesOnSelect">Rented till</label>
+                    <div id="datepicker-popup" class="input-group date datepicker">
+                      <input type="text" class="form-control">
+                      <span class="input-group-addon input-group-append border-left">
+                        <span class="mdi mdi-calendar input-group-text"></span>
+                      </span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="card" style="margin-bottom: 1.75rem;">
+                <div class="card-body">
+                  <h4 class="card-title" style="padding-bottom: 15px;">PUBLISHING</h4>
+                  <div class="form-group">
+                    <label for="hideValuesOnSelect">Status</label>
+                    <select class="form-control">
+                      <option value="Published" selected>Published</option>
+                      <option value="Not Published">Not Published</option>
+                    </select>
+                  </div>
+                  <div style="text-align: center;padding-top: 20px;">
+                    <a href="./propertyList.html">
+                      <button type="button" class="btn btn-info mr-2">Create</button>
+                    </a>
+                    <a href="./propertyList.html">
+                      <button type="button" class="btn btn-secondary">Cancel</button>
+                    </a>
+                  </div>
+                  <form id="editable-form" class="">
+                    <div class="form-group row" style="margin-bottom: 0px; margin-top: 20px;">
+                      <label class="col-6 col-lg-4 col-form-label" style="margin-bottom: 0px;">Created on</label>
+                      <div class="col-6 col-lg-8 d-flex align-items-center">
+                        <a href="#" id="dob" data-type="combodate" data-value="2021-02-16" data-format="YYYY-MM-DD"
+                          data-viewformat="DD/MM/YYYY" data-template="D / MMM / YYYY" data-pk="1"
+                          data-title="Select Date of birth">10/04/2021</a>
+                      </div>
+                    </div>
+                    <div class="form-group row">
+                      <label class="col-6 col-lg-4 col-form-label">by:</label>
+                      <div class="col-6 col-lg-8 d-flex align-items-center">
+                        <a href="#" id="username" data-type="text" data-pk="1">User</a>
+                      </div>
+                    </div>
+
+                    <div class="form-group row" style="margin-bottom: 0px; margin-top: 20px;">
+                      <label class="col-6 col-lg-4 col-form-label" style="margin-bottom: 0px;">Updated on</label>
+                      <div class="col-6 col-lg-8 d-flex align-items-center">
+                        <a href="#" id="dob" data-type="combodate" data-value="2021-02-16" data-format="YYYY-MM-DD"
+                          data-viewformat="DD/MM/YYYY" data-template="D / MMM / YYYY" data-pk="1"
+                          data-title="Select Date of birth">10/04/2021</a>
+                      </div>
+                    </div>
+                    <div class="form-group row">
+                      <label class="col-6 col-lg-4 col-form-label">by:</label>
+                      <div class="col-6 col-lg-8 d-flex align-items-center">
+                        <a href="#" class="none editable editable-click" id="username" data-type="text"
+                          data-pk="1">User</a>
+                      </div>
+                    </div>
+                  </form>
+                </div>
+              </div>
+
+
+            </div>
+
+            <div id="b" class="hide col-12 col-lg-8 col-xl-8 grid-margin stretch-card">
+              <div class="card" style="margin-bottom: 1.75rem;">
+                <div class="card-body">
+                  <h4 class="card-title" style="padding-bottom: 13px;">OVERVIEW</h4>
+                  <div class="form-group">
+                    <label for="exampleInputUsername1">Area</label>
+                    <div style="display: flex; flex-direction: row;">
+                      <input type="text" id="" style="width: 250px;
+                      border: 1px solid ;
+                      font-weight: 500;
+                      font-size: .975rem;
+                      height: auto;">
+                      <div style="margin-left: 15px; margin-right: 15px;">Uni</div>
+                      <input type="text" id="" style="width: 250px;
+                      border: 1px solid ;
+                      font-weight: 500;
+                      font-size: .975rem;
+                      height: auto;">
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label for="exampleInputlocation">Location</label>
+                    <select data-target="secondList" id="id_location" data-child-id='id_region'
+                      class="dependent-selects__parent form-control">
+                      <!-- <option value="" selected disabled>Select an option</option> -->
+                      <option value="">--------</option>
+                      <option value="Lebanon" data-child-options="Beirut">Lebanon</option>
+                      <option value="France" data-child-options="Paris">France</option>
+                    </select>
+                  </div>
+
+                  <div class="form-group">
+                    <label for="exampleInputregion">Region</label>
+                    <select id="id_region" class="dependent-selects__child dependent-selects__parent form-control"
+                      data-child-id='id_city'>
+                      <!-- <option value="" selected disabled>Select an option</option> -->
+                      <option value="">--------</option>
+                      <option value="Beirut" data-child-options="Aley">Beirut</option>
+                      <option value="Paris" data-child-options="Luxembourg">Paris</option>
+                    </select>
+                  </div>
+
+                  <div class="form-group">
+                    <label for="exampleInputcity">Region</label>
+                    <select id="id_city" class="dependent-selects__child form-control">
+                      <!-- <option value="" selected disabled>Select an option</option> -->
+                      <option value="">--------</option>
+                      <option value="Aley">Aley</option>
+                      <option value="Luxembourg">Luxembourg</option>
+                    </select>
+                  </div>
+
+                  <div class="form-group">
+                    <label for="exampleInputbuilding">Building Name</label>
+                    <input type="text" class="form-control" id="exampleInputbuilding">
+                  </div>
+
+                  <div class="form-group">
+                    <label for="exampleInputaddress">Address</label>
+                    <input type="text" class="form-control" id="exampleInputaddress">
+                  </div>
+
+                  <div class="form-group">
+                    <label for="exampleInputfloor">Floor</label>
+                    <input type="text" class="form-control" id="exampleInputfloor">
+                  </div>
+
+                  <div class="form-group">
+                    <label for="exampleInputBedroom">Bedroom</label>
+                    <select class="form-control">
+                      <option>1</option>
+                      <option>2</option>
+                      <option>3</option>
+                      <option>4</option>
+                      <option>5</option>
+                    </select>
+                  </div>
+
+                  <div class="form-group">
+                    <label for="exampleInputBathroom">Bathroom</label>
+                    <select class="form-control">
+                      <option>1</option>
+                      <option>2</option>
+                      <option>3</option>
+                      <option>4</option>
+                      <option>5</option>
+                    </select>
+                  </div>
+
+                  <div class="form-group">
+                    <label for="exampleInputParking">Parking</label>
+                    <select class="form-control">
+                      <option>1</option>
+                      <option>2</option>
+                      <option>3</option>
+                      <option>4</option>
+                    </select>
+                  </div>
+
+                </div>
+              </div>
+
+              <div class="card" style="margin-bottom: 1.75rem;">
+                <div class="card-body">
+                  <h4 class="card-title" style="padding-bottom: 13px;">PHOTO GALLERY</h4>
+                  <form action="/file-upload" class="dropzone" id="my-awesome-dropzone"></form>
+                </div>
+              </div>
+
+              <div class="card" style="margin-bottom: 1.75rem;">
+                <div class="card-body">
+                  <h4 class="card-title" style="padding-bottom: 13px;">CONTACT INFORMATION</h4>
+                  <div class="form-group">
+                    <label for="exampleInputOwner">Property owner</label>
+                    <input type="text" class="form-control" id="exampleInputOwner">
+                  </div>
+                  <div class="form-group">
+                    <label for="exampleInputPerson">Contact person</label>
+                    <input type="text" class="form-control" id="exampleInputPerson">
+                  </div>
+                  <div class="form-group">
+                    <label for="exampleInputnumber">Contact number</label>
+                    <input type="text" id="phone2" />
+                  </div>
+                  <div class="form-group">
+                    <label for="exampleInputkey">Key location</label>
+                    <input type="text" class="form-control" id="exampleInputPkey">
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div id="2b" class="hide col-12 col-lg-4 col-xl-4 grid-margin stretch-card ">
+              <div class="card" style="margin-bottom: 1.75rem;">
+                <div class="card-body">
+                  <h4 class="card-title" style="padding-bottom: 13px;">PRICE</h4>
+                  <div class="form-inline repeater">
+                    <div data-repeater-list="group-a">
+                      <div data-repeater-item class="d-flex mb-2">
+                        <label class="sr-only" for="inlineFormInputGroup1">Users</label>
+                        <div class="input-group mb-2 mr-sm-2 mb-sm-0">
+                          <div class="input-group-prepend">
+                            <!-- <span class="input-group-text">$</span> -->
+                            <select class="form-control">
+                              <option>Total $</option>
+                            </select>
+                          </div>
+                          <input type="text" class="form-control form-control-sm" id="inlineFormInputGroup1"
+                            placeholder="">
+                        </div>
+                        <button data-repeater-delete type="button" class="btn btn-danger btn-sm icon-btn ml-2">
+                          <i class="mdi mdi-delete"></i>
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="card" style="margin-bottom: 1.75rem;">
+                <div class="card-body">
+                  <h4 class="card-title" style="padding-bottom: 13px;">VISIBILITY</h4>
+
+                  <div class="row">
+                    <div style="flex: 0 0 100%;padding-left: 15px;">
+                      <div class="form-check">
+                        <label class="form-check-label">
+                          <input type="checkbox" class="form-check-input">
+                          Present on Property Finder CRM
+                        </label>
+                      </div>
+                      <div class="form-check">
+                        <label class="form-check-label">
+                          <input type="checkbox" class="form-check-input">
+                          Present on website
+                        </label>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="card" style="margin-bottom: 1.75rem;">
+                <div class="card-body">
+                  <h4 class="card-title" style="padding-bottom: 13px;">STATUS</h4>
+                  <div class="form-group">
+                    <label for="exampleInputcategory">Category</label>
+                    <select onchange="displayDivDemo2('hideValuesOnSelect2', this)" class="form-control">
+                      <!-- <option value="" selected disabled>Select an option</option> -->
+                      <option value="">--------</option>
+                      <option value="0">Sold</option>
+                      <option value="1">Rented</option>
+                    </select>
+                  </div>
+
+                  <div id="hideValuesOnSelect2" class="date box">
+                    <label for="hideValuesOnSelect2">Rented till</label>
+                    <div id="datepicker-popup" class="input-group date datepicker">
+                      <input type="text" class="form-control">
+                      <span class="input-group-addon input-group-append border-left">
+                        <span class="mdi mdi-calendar input-group-text"></span>
+                      </span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="card" style="margin-bottom: 1.75rem;">
+                <div class="card-body">
+                  <h4 class="card-title" style="padding-bottom: 15px;">PUBLISHING</h4>
+                  <div class="form-group">
+                    <label for="hideValuesOnSelect">Status</label>
+                    <select class="form-control">
+                      <option value="Published" selected>Published</option>
+                      <option value="Not Published">Not Published</option>
+                    </select>
+                  </div>
+                  <div style="text-align: center;padding-top: 20px;">
+                    <a href="./propertyList.html">
+                      <button type="button" class="btn btn-info mr-2">Create</button>
+                    </a>
+                    <a href="./propertyList.html">
+                      <button type="button" class="btn btn-secondary">Cancel</button>
+                    </a>
+                  </div>
+                  <form id="editable-form" class="">
+                    <div class="form-group row" style="margin-bottom: 0px; margin-top: 20px;">
+                      <label class="col-6 col-lg-4 col-form-label" style="margin-bottom: 0px;">Created on</label>
+                      <div class="col-6 col-lg-8 d-flex align-items-center">
+                        <a href="#" id="dob" data-type="combodate" data-value="2021-02-16" data-format="YYYY-MM-DD"
+                          data-viewformat="DD/MM/YYYY" data-template="D / MMM / YYYY" data-pk="1"
+                          data-title="Select Date of birth">--/--/----</a>
+                      </div>
+                    </div>
+                    <div class="form-group row">
+                      <label class="col-6 col-lg-4 col-form-label">by:</label>
+                      <div class="col-6 col-lg-8 d-flex align-items-center">
+                        <a href="#" id="username" data-type="text" data-pk="1">user</a>
+                      </div>
+                    </div>
+
+                    <div class="form-group row" style="margin-bottom: 0px; margin-top: 20px;">
+                      <label class="col-6 col-lg-4 col-form-label" style="margin-bottom: 0px;">Updated on</label>
+                      <div class="col-6 col-lg-8 d-flex align-items-center">
+                        <a href="#" id="dob" data-type="combodate" data-value="2021-02-16" data-format="YYYY-MM-DD"
+                          data-viewformat="DD/MM/YYYY" data-template="D / MMM / YYYY" data-pk="1"
+                          data-title="Select Date of birth">--/--/----</a>
+                      </div>
+                    </div>
+                    <div class="form-group row">
+                      <label class="col-6 col-lg-4 col-form-label">by:</label>
+                      <div class="col-6 col-lg-8 d-flex align-items-center">
+                        <a href="#" class="editable editable-click" id="username" data-type="text" data-pk="1">user</a>
+                      </div>
+                    </div>
+                  </form>
+                </div>
+              </div>
+
+
+            </div>
+
+            <div id="c" class="hide col-12 col-lg-8 col-xl-8 grid-margin stretch-card">
+
+              <div class="card" style="margin-bottom: 1.75rem;">
+                <div class="card-body">
+                  <h4 class="card-title" style="padding-bottom: 13px;">LAND INFORMATION</h4>
+
+                  <div class="form-group">
+                    <label for="exampleInputregion">Region</label>
+                    <select class="form-control">
+                      <!-- <option value="" selected disabled>Select an option</option> -->
+                      <option value="">--------</option>
+                      <option value="Beirut">Beirut</option>
+                      <option value="Paris">Paris</option>
+                    </select>
+                  </div>
+                  <div class="form-group">
+                    <label for="exampleInputOwner">Land number</label>
+                    <input type="text" class="form-control" id="exampleInputOwner">
+                  </div>
+                  <div class="form-group">
+                    <label for="exampleInputUsername1">Area</label>
+                    <div style="display: flex; flex-direction: row;">
+                      <input type="text" placeholder="" id="" style="width: 250px; color: lightseagreen;
+                      border: 1px solid lightseagreen;
+                      font-weight: 500;
+                      font-size: .975rem;
+                      height: auto;">
+                      <div style="margin-left: 15px;">Uni</div>
+                      <input type="text" placeholder="SQM" id="" style="margin-left: 15px; width: 250px;color: lightseagreen;
+                      border: 1px solid lightseagreen;
+                      font-weight: 500;
+                      font-size: .975rem;
+                      height: auto;
+                      ">
+                    </div>
+                  </div>
+
+                  <div class="form-group">
+                    <label for="exampleInputratio">Invest ratio</label>
+                    <select class="form-control">
+                      <!-- <option value="" selected disabled>Select an option</option> -->
+                      <option value="">--------</option>
+                      <option value="5">5%</option>
+                      <option value="10">10%</option>
+                      <option value="25">25%</option>
+                      <option value="50">50%</option>
+                    </select>
+                  </div>
+
+                  <div class="form-group">
+                    <label for="exampleInputratio">Zone</label>
+                    <select class="form-control">
+                      <!-- <option value="" selected disabled>Select an option</option> -->
+                      <option value="">--------</option>
+                      <option value="A">A</option>
+                      <option value="B">B</option>
+                      <option value="C">C</option>
+                      <option value="D">D</option>
+                      <option value="1">1</option>
+                      <option value="2">2</option>
+                      <option value="3">3</option>
+                      <option value="4">4</option>
+                      <option value="5">5</option>
+                      <option value="6">6</option>
+                    </select>
+                  </div>
+
+                  <div class="form-group">
+                    <label for="exampleInputEmp">Emplacement</label>
+                    <input type="text" class="form-control" id="exampleInputEmp">
+                  </div>
+                </div>
+              </div>
+
+              <div class="card" style="margin-bottom: 1.75rem;">
+                <div class="card-body">
+                  <h4 class="card-title" style="padding-bottom: 13px;">PHOTO GALLERY</h4>
+                  <form action="/file-upload" class="dropzone" id="my-awesome-dropzone"></form>
+                </div>
+              </div>
+
+              <div class="card" style="margin-bottom: 1.75rem;">
+                <div class="card-body">
+                  <h4 class="card-title" style="padding-bottom: 13px;">DOCUMENTS</h4>
+                  <input type="file" class="dropify" />
+                </div>
+              </div>
+
+              <div class="card" style="margin-bottom: 1.75rem;">
+                <div class="card-body">
+                  <h4 class="card-title" style="padding-bottom: 13px;">CONTACT INFORMATION</h4>
+                  <div class="form-group">
+                    <label for="exampleInputOwner">Property owner</label>
+                    <input type="text" class="form-control" id="exampleInputOwner">
+                  </div>
+                  <div class="form-group">
+                    <label for="exampleInputPerson">Contact person</label>
+                    <input type="text" class="form-control" id="exampleInputPerson">
+                  </div>
+                  <div class="form-group">
+                    <label for="exampleInputnumber">Contact number</label>
+                    <input type="text" id="phone3" />
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div id="2c" class="hide col-12 col-lg-4 col-xl-4 grid-margin stretch-card ">
+              <div class="card" style="margin-bottom: 1.75rem;">
+                <div class="card-body">
+                  <h4 class="card-title" style="padding-bottom: 13px;">PRICE</h4>
+                  <div class="form-inline repeater">
+                    <div data-repeater-list="group-a">
+                      <div data-repeater-item class="d-flex mb-2">
+                        <label class="sr-only" for="inlineFormInputGroup1">Users</label>
+                        <div class="input-group mb-2 mr-sm-2 mb-sm-0">
+                          <div class="input-group-prepend">
+                            <!-- <span class="input-group-text">$</span> -->
+                            <select class="form-control">
+                              <option>Total $</option>
+                            </select>
+                          </div>
+                          <input type="text" class="form-control form-control-sm" id="inlineFormInputGroup1"
+                            placeholder="">
+                        </div>
+                        <button data-repeater-delete type="button" class="btn btn-danger btn-sm icon-btn ml-2">
+                          <i class="mdi mdi-delete"></i>
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="card" style="margin-bottom: 1.75rem;">
+                <div class="card-body">
+                  <h4 class="card-title" style="padding-bottom: 15px;">PUBLISHING</h4>
+                  <div class="form-group">
+                    <label for="hideValuesOnSelect">Status</label>
+                    <select class="form-control">
+                      <option value="Published" selected>Published</option>
+                      <option value="Not Published">Not Published</option>
+                    </select>
+                  </div>
+                  <div style="text-align: center;padding-top: 20px;">
+                    <a href="./propertyList.html">
+                      <button type="button" class="btn btn-info mr-2">Create</button>
+                    </a>
+                    <a href="./propertyList.html">
+                      <button type="button" class="btn btn-secondary">Cancel</button>
+                    </a>
+                  </div>
+                  <form id="editable-form" class="editable-form">
+                    <div class="form-group row" style="margin-bottom: 0px; margin-top: 20px;">
+                      <label class="col-6 col-lg-4 col-form-label" style="margin-bottom: 0px;">Created on</label>
+                      <div class="col-6 col-lg-8 d-flex align-items-center">
+                        <a href="#" id="dob" data-type="combodate" data-value="2021-02-16" data-format="YYYY-MM-DD"
+                          data-viewformat="DD/MM/YYYY" data-template="D / MMM / YYYY" data-pk="1"
+                          data-title="Select Date of birth">--/--/----</a>
+                      </div>
+                    </div>
+                    <div class="form-group row">
+                      <label class="col-6 col-lg-4 col-form-label">by:</label>
+                      <div class="col-6 col-lg-8 d-flex align-items-center">
+                        <a href="#" id="username" data-type="text" data-pk="1">user</a>
+                      </div>
+                    </div>
+                  </form>
+                </div>
+              </div>
+
+
+            </div>
+
+            <div id="d" class="hide col-12 col-lg-8 col-xl-8 grid-margin stretch-card">
+              <div class="card" style="margin-bottom: 1.75rem;">
+                <div class="card-body">
+                  <h4 class="card-title" style="padding-bottom: 13px;">OVERVIEW</h4>
+                  <div class="form-group">
+                    <label for="exampleInputUsername1">Area</label>
+                    <div style="display: flex; flex-direction: row;">
+                      <input type="text" id="" style="width: 250px;
+                      border: 1px solid ;
+                      font-weight: 500;
+                      font-size: .975rem;
+                      height: auto;">
+                      <div style="margin-left: 15px; margin-right: 15px;">Uni</div>
+                      <input type="text" id="" style="width: 250px;
+                      border: 1px solid ;
+                      font-weight: 500;
+                      font-size: .975rem;
+                      height: auto;">
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label for="exampleInputlocation">Location</label>
+                    <select data-target="secondList" id="id_location" data-child-id='id_region'
+                      class="dependent-selects__parent form-control">
+                      <!-- <option value="" selected disabled>Select an option</option> -->
+                      <option value="">--------</option>
+                      <option value="Lebanon" data-child-options="Beirut">Lebanon</option>
+                      <option value="France" data-child-options="Paris">France</option>
+                    </select>
+                  </div>
+
+                  <div class="form-group">
+                    <label for="exampleInputregion">Region</label>
+                    <select id="id_region" class="dependent-selects__child dependent-selects__parent form-control"
+                      data-child-id='id_city'>
+                      <!-- <option value="" selected disabled>Select an option</option> -->
+                      <option value="">--------</option>
+                      <option value="Beirut" data-child-options="Aley">Beirut</option>
+                      <option value="Paris" data-child-options="Luxembourg">Paris</option>
+                    </select>
+                  </div>
+
+                  <div class="form-group">
+                    <label for="exampleInputcity">Region</label>
+                    <select id="id_city" class="dependent-selects__child form-control">
+                      <!-- <option value="" selected disabled>Select an option</option> -->
+                      <option value="">--------</option>
+                      <option value="Aley">Aley</option>
+                      <option value="Luxembourg">Luxembourg</option>
+                    </select>
+                  </div>
+
+                  <div class="form-group">
+                    <label for="exampleInputbuilding">Building Name</label>
+                    <input type="text" class="form-control" id="exampleInputbuilding">
+                  </div>
+
+                  <div class="form-group">
+                    <label for="exampleInputaddress">Address</label>
+                    <input type="text" class="form-control" id="exampleInputaddress">
+                  </div>
+
+                  <div class="form-group">
+                    <label for="exampleInputfloor">Floor</label>
+                    <input type="text" class="form-control" id="exampleInputfloor">
+                  </div>
+
+                  <div class="form-group">
+                    <label for="exampleInputBedroom">Bedroom</label>
+                    <select class="form-control">
+                      <option>1</option>
+                      <option>2</option>
+                      <option>3</option>
+                      <option>4</option>
+                      <option>5</option>
+                    </select>
+                  </div>
+
+                  <div class="form-group">
+                    <label for="exampleInputBathroom">Bathroom</label>
+                    <select class="form-control">
+                      <option>1</option>
+                      <option>2</option>
+                      <option>3</option>
+                      <option>4</option>
+                      <option>5</option>
+                    </select>
+                  </div>
+
+                  <div class="form-group">
+                    <label for="exampleInputParking">Parking</label>
+                    <select class="form-control">
+                      <option>1</option>
+                      <option>2</option>
+                      <option>3</option>
+                      <option>4</option>
+                    </select>
+                  </div>
+
+                </div>
+              </div>
+
+              <div class="card" style="margin-bottom: 1.75rem;">
+                <div class="card-body">
+                  <h4 class="card-title" style="padding-bottom: 13px;">Features</h4>
+                  <div class="form-group">
+                    <label for="exampleInputBathroom">Balcony room</label>
+                    <select class="form-control">
+                      <option>1</option>
+                      <option>2</option>
+                      <option>3</option>
+                      <option>4</option>
+                      <option>5</option>
+                    </select>
+                  </div>
+                  <div class="form-group">
+                    <div class="form-check">
+                      <label class="form-check-label">
+                        <input type="checkbox" class="form-check-input">
+                        Storage
+                      </label>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="card" style="margin-bottom: 1.75rem;">
+                <div class="card-body">
+                  <h4 class="card-title" style="padding-bottom: 13px;">PHOTO GALLERY</h4>
+                  <form action="/file-upload" class="dropzone" id="my-awesome-dropzone"></form>
+                </div>
+              </div>
+
+              <div class="card" style="margin-bottom: 1.75rem;">
+                <div class="card-body">
+                  <h4 class="card-title" style="padding-bottom: 13px;">CONTACT INFORMATION</h4>
+                  <div class="form-group">
+                    <label for="exampleInputOwner">Property owner</label>
+                    <input type="text" class="form-control" id="exampleInputOwner">
+                  </div>
+                  <div class="form-group">
+                    <label for="exampleInputPerson">Contact person</label>
+                    <input type="text" class="form-control" id="exampleInputPerson">
+                  </div>
+                  <div class="form-group">
+                    <label for="exampleInputnumber">Contact number</label>
+                    <input type="text" id="phone4" />
+                  </div>
+                  <div class="form-group">
+                    <label for="exampleInputkey">Key location</label>
+                    <input type="text" class="form-control" id="exampleInputPkey">
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div id="2d" class="hide col-12 col-lg-4 col-xl-4 grid-margin stretch-card ">
+              <div class="card" style="margin-bottom: 1.75rem;">
+                <div class="card-body">
+                  <h4 class="card-title" style="padding-bottom: 13px;">PRICE</h4>
+                  <div class="form-inline repeater">
+                    <div data-repeater-list="group-a">
+                      <div data-repeater-item class="d-flex mb-2">
+                        <label class="sr-only" for="inlineFormInputGroup1">Users</label>
+                        <div class="input-group mb-2 mr-sm-2 mb-sm-0">
+                          <div class="input-group-prepend">
+                            <!-- <span class="input-group-text">$</span> -->
+                            <select class="form-control">
+                              <option>Total $</option>
+                            </select>
+                          </div>
+                          <input type="text" class="form-control form-control-sm" id="inlineFormInputGroup1"
+                            placeholder="">
+                        </div>
+                        <button data-repeater-delete type="button" class="btn btn-danger btn-sm icon-btn ml-2">
+                          <i class="mdi mdi-delete"></i>
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="card" style="margin-bottom: 1.75rem;">
+                <div class="card-body">
+                  <h4 class="card-title" style="padding-bottom: 13px;">VISIBILITY</h4>
+
+                  <div class="row">
+                    <div style="flex: 0 0 100%;padding-left: 15px;">
+                      <div class="form-check">
+                        <label class="form-check-label">
+                          <input type="checkbox" class="form-check-input">
+                          Present on website
+                        </label>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="card" style="margin-bottom: 1.75rem;">
+                <div class="card-body">
+                  <h4 class="card-title" style="padding-bottom: 13px;">STATUS</h4>
+                  <div class="form-group">
+                    <label for="exampleInputcategory">Category</label>
+                    <select onchange="displayDivDemo2('hideValuesOnSelect3', this)" class="form-control">
+                      <!-- <option value="" selected disabled>Select an option</option> -->
+                      <option value="">--------</option>
+                      <option value="0">Sold</option>
+                      <option value="1">Rented</option>
+                    </select>
+                  </div>
+
+                  <div id="hideValuesOnSelect3" class="date box">
+                    <label for="hideValuesOnSelect3">Rented till</label>
+                    <div id="datepicker-popup" class="input-group date datepicker">
+                      <input type="text" class="form-control">
+                      <span class="input-group-addon input-group-append border-left">
+                        <span class="mdi mdi-calendar input-group-text"></span>
+                      </span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="card" style="margin-bottom: 1.75rem;">
+                <div class="card-body">
+                  <h4 class="card-title" style="padding-bottom: 15px;">PUBLISHING</h4>
+                  <div class="form-group">
+                    <label for="hideValuesOnSelect">Status</label>
+                    <select class="form-control">
+                      <option value="Published" selected>Published</option>
+                      <option value="Not Published">Not Published</option>
+                    </select>
+                  </div>
+                  <div style="text-align: center;padding-top: 20px;">
+                    <a href="./propertyList.html">
+                      <button type="button" class="btn btn-info mr-2">Create</button>
+                    </a>
+                    <a href="./propertyList.html">
+                      <button type="button" class="btn btn-secondary">Cancel</button>
+                    </a>
+                  </div>
+                  <form id="editable-form" class="editable-form">
+                    <div class="form-group row" style="margin-bottom: 0px; margin-top: 20px;">
+                      <label class="col-6 col-lg-4 col-form-label" style="margin-bottom: 0px;">Created on</label>
+                      <div class="col-6 col-lg-8 d-flex align-items-center">
+                        <a href="#" id="dob" data-type="combodate" data-value="2021-02-16" data-format="YYYY-MM-DD"
+                          data-viewformat="DD/MM/YYYY" data-template="D / MMM / YYYY" data-pk="1"
+                          data-title="Select Date of birth">--/--/----</a>
+                      </div>
+                    </div>
+                    <div class="form-group row">
+                      <label class="col-6 col-lg-4 col-form-label">by:</label>
+                      <div class="col-6 col-lg-8 d-flex align-items-center">
+                        <a href="#" id="username" data-type="text" data-pk="1">user</a>
+                      </div>
+                    </div>
+
+                    <div class="form-group row" style="margin-bottom: 0px; margin-top: 20px;">
+                      <label class="col-6 col-lg-4 col-form-label" style="margin-bottom: 0px;">Updated on</label>
+                      <div class="col-6 col-lg-8 d-flex align-items-center">
+                        <a href="#" id="dob" data-type="combodate" data-value="2021-02-16" data-format="YYYY-MM-DD"
+                          data-viewformat="DD/MM/YYYY" data-template="D / MMM / YYYY" data-pk="1"
+                          data-title="Select Date of birth">--/--/----</a>
+                      </div>
+                    </div>
+                    <div class="form-group row">
+                      <label class="col-6 col-lg-4 col-form-label">by:</label>
+                      <div class="col-6 col-lg-8 d-flex align-items-center">
+                        <a href="#" id="username" data-type="text" data-pk="1">user</a>
+                      </div>
+                    </div>
+                  </form>
+                </div>
+              </div>
+
+
+            </div>
+          </div>
+        </div>
+        <!-- content-wrapper ends -->
+        <!-- partial:../../partials/_footer.html -->
+        <div class="footer-wrapper">
+          <footer class="footer">
+            <div class="d-sm-flex justify-content-center justify-content-sm-between">
+              <span class="text-center text-sm-left d-block d-sm-inline-block">Copyright &copy; 2021. All rights
+                reserved. </span>
+              <span class="float-none float-sm-right d-block mt-1 mt-sm-0 text-center">Designed by: <a
+                  href="">Infracode</a>. </span>
+            </div>
+          </footer>
+        </div>
+        <!-- partial -->
+      </div>
+      <!-- main-panel ends -->
+    </div>
+    <!-- page-body-wrapper ends -->
+  </div>
+  <!-- container-scroller -->
+  <!-- base:js -->
+  <script src="../../vendors/base/vendor.bundle.base.js"></script>
+  <!-- endinject -->
+  <!-- inject:js -->
+
+  <script>
+    $('#id_parent').change(function () {
+      var select = $(this).find(':selected').val();
+      $(".hide").hide();
+      $('#' + select).show();
+      $('#2' + select).show();
+    }).change();
+  </script>
+
+
+  <script>
+    var input = document.querySelector("#phone");
+    intlTelInput(input, {
+      initialCountry: "auto",
+      geoIpLookup: function (success, failure) {
+        $.get("https://ipinfo.io", function () { }, "jsonp").always(function (resp) {
+          var countryCode = (resp && resp.country) ? resp.country : "lb";
+          success(countryCode);
+        });
+      },
+    });
+  </script>
+
+  <script>
+    var input = document.querySelector("#phone2");
+    intlTelInput(input, {
+      initialCountry: "auto",
+      geoIpLookup: function (success, failure) {
+        $.get("https://ipinfo.io", function () { }, "jsonp").always(function (resp) {
+          var countryCode = (resp && resp.country) ? resp.country : "lb";
+          success(countryCode);
+        });
+      },
+    });
+  </script>
+
+  <script>
+    var input = document.querySelector("#phone3");
+    intlTelInput(input, {
+      initialCountry: "auto",
+      geoIpLookup: function (success, failure) {
+        $.get("https://ipinfo.io", function () { }, "jsonp").always(function (resp) {
+          var countryCode = (resp && resp.country) ? resp.country : "lb";
+          success(countryCode);
+        });
+      },
+    });
+  </script>
+
+
+  <script>
+    var input = document.querySelector("#phone4");
+    intlTelInput(input, {
+      initialCountry: "auto",
+      geoIpLookup: function (success, failure) {
+        $.get("https://ipinfo.io", function () { }, "jsonp").always(function (resp) {
+          var countryCode = (resp && resp.country) ? resp.country : "france";
+          success(countryCode);
+        });
+      },
+    });
+  </script>
+
+
+  <script src="../../js/off-canvas.js"></script>
+  <script src="../../js/hoverable-collapse.js"></script>
+  <script src="../../js/template.js"></script>
+  <script src="../../js/settings.js"></script>
+  <script src="../../js/todolist.js"></script>
+
+  <!-- endinject -->
+  <!-- plugin js for this page -->
+  <script src="../../vendors/typeahead.js/typeahead.bundle.min.js"></script>
+  <script src="../../vendors/select2/select2.min.js"></script>
+  <script src="../../vendors/simplemde/simplemde.min.js"></script>
+  <script src="../../vendors/jquery.repeater/jquery.repeater.min.js"></script>
+  <script src="../../vendors/dropzone/dropzone.js"></script>
+  <script src="../../vendors/dropify/dropify.min.js"></script>
+  <script src="../../vendors/bootstrap-datepicker/bootstrap-datepicker.min.js"></script>
+  <script src="../../vendors/x-editable/bootstrap-editable.min.js"></script>
+
+
+
+  <!-- End plugin js for this page -->
+  <!-- Custom js for this page-->
+  <script src="../../js/file-upload.js"></script>
+  <script src="../../js/formpickers.js"></script>
+  <script src="../../js/typeahead.js"></script>
+  <script src="../../js/select2.js"></script>
+  <script src="../../js/editorDemo.js"></script>
+  <script src="../../js/dropzone.js"></script>
+  <script src="../../js/form-repeater.js"></script>
+  <script src="../../js/dropify.js"></script>
+  <script src="../../js/x-editable.js"></script>
+  <script src="../../js/form-addons.js"></script>
+  <!-- End custom js for this page-->
+</body>
+
+</html>
