@@ -40,6 +40,12 @@
       opacity: 1;
       /* Firefox */
     }
+
+    @media (max-width: 991px) {
+      .brand-logo-mini {
+        display: none !important;
+      }
+    }
   </style>
 </head>
 
@@ -151,7 +157,7 @@
               </a>
             </div>
           </li>
-                    <!-- <li class="nav-item dropdown">
+          <!-- <li class="nav-item dropdown">
             <a class="nav-link count-indicator dropdown-toggle d-flex justify-content-center align-items-center"
               id="messageDropdown" href="#" data-toggle="dropdown">
               <i class="mdi mdi-email-outline mx-0"></i>
@@ -207,7 +213,7 @@
               <img src="https://via.placeholder.com/37x37" alt="profile" />
             </a>
           </li>
-          <li class="nav-item nav-settings d-none d-lg-flex">
+          <li class="nav-item nav-settings">
             <a class="nav-link" href="../../index.html">
               <i class="mdi mdi-logout"></i>
             </a>
@@ -450,7 +456,8 @@
               <ul class="nav flex-column sub-menu">
                 <li class="nav-item"> <a class="nav-link" href="../prop-categories/category.html">Category</a>
                 </li>
-                <li class="nav-item"> <a class="nav-link" href="../prop-categories/propertyType.html">Property type</a></li>
+                <li class="nav-item"> <a class="nav-link" href="../prop-categories/propertyType.html">Property type</a>
+                </li>
               </ul>
             </div>
           </li>
@@ -535,7 +542,8 @@
                   <form class="forms-sample">
                     <div class="form-group">
                       <!-- <label for="exampleInputUsername1">Country Name</label> -->
-                      <input type="text" class="form-control" id="exampleInputUsername1" placeholder="Name" value="Maid room">
+                      <input type="text" class="form-control" id="exampleInputUsername1" placeholder="Name"
+                        value="Maid room">
                     </div>
 
                     <h4 class="card-title" style="padding-bottom: 13px;">Type</h4>
@@ -620,7 +628,7 @@
                   <h4 class="card-title" style="padding-bottom: 15px;">Status</h4>
                   <!-- <label style="padding-bottom: 10px;">Select the status of the Country</label> -->
                   <select class="js-example-basic-single w-100">
-                    <option value="Published" >Published</option>
+                    <option value="Published">Published</option>
                     <option value="Not Published" selected>Not Published</option>
                   </select>
                 </div>

@@ -21,6 +21,30 @@
 
   <!-- endinject -->
   <link rel="shortcut icon" href="../../images/favicon.png" />
+  <style>
+    @media (max-width: 565px) {
+      #mySelector {
+        margin-right: 75px !important;
+      }
+    }
+
+    @media (max-width: 991px) {
+      .brand-logo-mini {
+        display: none !important;
+      }
+    }
+
+    @media (max-width: 488px) {
+      .input-group {
+        flex-wrap: inherit;
+      }
+      #mySelector {
+        width: 44px !important;
+        margin-right: 30px !important;
+        margin-left: 35px !important;
+      }
+    }
+  </style>
 </head>
 
 <body>
@@ -187,8 +211,8 @@
               <img src="https://via.placeholder.com/37x37" alt="profile" />
             </a>
           </li>
-          
-          <li class="nav-item nav-settings d-none d-lg-flex">
+
+          <li class="nav-item nav-settings">
             <a class="nav-link" href="../../index.html">
               <i class="mdi mdi-logout"></i>
             </a>
@@ -314,7 +338,7 @@
           <div class="card-body" style="padding: 1.25rem 0 0 1.25rem;">
             <h4>Properties</h4>
             <ol class="breadcrumb">
-              <li class="breadcrumb-item"><a href="./propertyList.html">Property List</a></li>
+              <li class="breadcrumb-item"><a href="./propertyList.html" >Property List</a></li>
               <!-- <li class="breadcrumb-item active" aria-current="page">Countries</li> -->
             </ol>
             <div id="js-grid" class="pt-3"></div>
@@ -322,18 +346,18 @@
           <div class="toolbar">
             <div>
               <a href="./add-property.html">
-                <button class="btn btn-success">Add Property</button>
+                <button class="btn btn-inverse-success">Add Property</button>
               </a>
             </div>
             <div class="buttonPos">
-              <button id="button" class="btn btn-secondary">Remove</button>
+              <button id="button" class="btn btn-inverse-secondary">Remove</button>
             </div>
           </div>
           <div class="card">
             <div class="card-body">
               <select id='mySelector' class="form-control"
-                style="float: right;width: 170px;margin-right: 143px;margin-top:23px">
-                <option selected disabled>Please Select</option>
+                style="float: right;width: 170px;margin-right: 115px;margin-top:23px">
+                <option selected disabled>Select Status</option>
                 <option value='Published'>Published</option>
                 <option value='Not Published'>Not Published</option>
               </select>

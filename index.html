@@ -16,12 +16,24 @@
   <link rel="stylesheet" href="../../../../css/vertical-layout-light/style.css">
   <!-- endinject -->
   <link rel="shortcut icon" href="../../../../images/favicon.png" />
-<style>
-  .auth .login-half-bg{
-    background: url(./pages/logo.png);
-    background-repeat: repeat-y;
-  }
-</style>
+  <style>
+    .auth .login-half-bg {
+      background: url(./pages/logo.png);
+      /* background-repeat: repeat-y; */
+      background-repeat: no-repeat;
+      background-attachment: inherit;
+      background-position: 227px 325px;
+      background-size: 150px;
+    }
+
+
+    @media (max-width: 850px) {
+      .auth-form-transparent {
+        width: 60% !important;
+      }
+
+    }
+  </style>
 </head>
 
 <body>
@@ -29,11 +41,12 @@
     <div class="container-fluid page-body-wrapper full-page-wrapper">
       <div class="content-wrapper d-flex align-items-stretch auth auth-img-bg">
         <div class="row flex-grow">
-          <div class="col-lg-6 d-flex align-items-center justify-content-center">
-            <div class="auth-form-transparent text-left p-3">
-              <!-- <div class="brand-logo">
-                <img src="../../../../images/logo-dark.svg" alt="logo">
-              </div> -->
+          <div class="col-lg-6 d-flex align-items-center justify-content-center"
+            style="flex: 0 0 100%; max-width: 100%;">
+            <div class="auth-form-transparent text-left p-3" style="width: 25%;">
+              <div class="brand-logo">
+                <img src="./pages/logo.png" alt="logo" style="height: 130px; width: 100px;">
+              </div>
               <h4>Welcome back!</h4>
               <h6 class="font-weight-light">Happy to see you again!</h6>
               <form class="pt-3" id="form_id" method="post" name="myform">
@@ -70,8 +83,9 @@
                   </div>
                   <!-- <a href="#" class="auth-link text-black">Forgot password?</a> -->
                 </div>
-                <div class="my-3">
-                  <input class="btn btn-inverse-primary btn-fw" type="button" value="Login" id="submit" onclick="validate()" />
+                <div class="my-3" float>
+                  <input class="btn btn-block btn-inverse-secondary btn-fw" type="button" value="Login" id="submit"
+                    onclick="validate()" />
                 </div>
                 <!-- <div class="mb-2 d-flex">
                   <button type="button" class="btn btn-facebook auth-form-btn flex-grow mr-1">
@@ -88,10 +102,12 @@
 
             </div>
           </div>
-          <div class="col-lg-6 login-half-bg d-flex flex-row">
-            <p class="text-white font-weight-medium text-center flex-grow align-self-end">Copyright &copy; 2021 All
-              rights reserved.</p>
-          </div>
+          <!-- <div class="col-lg-6 login-half-bg d-flex flex-row">
+            
+          </div> -->
+          <p class="text-white font-weight-medium text-center flex-grow align-self-end" style="color: gray !important;">
+            Copyright &copy; 2021 All
+            rights reserved.</p>
         </div>
       </div>
       <!-- content-wrapper ends -->
@@ -109,7 +125,7 @@
     function validate() {
       var username = document.getElementById("username").value;
       var password = document.getElementById("password").value;
-      if (username == "binbeirut" && password == "1122!?bb$$") {
+      if (username == "abj" && password == "123") {
         // alert("Login successfully");
         window.location = "./pages/properties/propertyList.html"; // Redirecting to other page.
         return false;
