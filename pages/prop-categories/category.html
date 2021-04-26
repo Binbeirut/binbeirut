@@ -543,7 +543,7 @@
             <div class="card-body">
               <select id='mySelector' class="form-control"
                 style="float: right;width: 170px;margin-right: 350px;margin-top:23px">
-                <option selected disabled>Please Select</option>
+                <option value="hey">Select Status</option>
                 <option value='Published'>Published</option>
                 <option value='Not Published'>Not Published</option>
               </select>
@@ -650,17 +650,19 @@
 
     //select status filter
     $(document).ready(function ($) {
-      $('table').show();
+      // $('table').show();
       $('#mySelector').change(function () {
         var selection = $(this).val();
         var dataset = $('#table tbody').find('tr');
         // show all rows first
         dataset.show();
         // filter the rows that should be hidden
-        dataset.filter(function (index, item) {
-          return $(item).find('td:nth-last-child(2)').text().split(',').indexOf(selection) === -1;
-        }).hide();
-        console.log(selection)
+        if (selection !="hey") {
+          dataset.filter(function (index, item) {
+            return $(item).find('td:nth-last-child(2)').text().split(',').indexOf(selection) === -1;
+          }).hide();
+        } else if (selection == "hey") {
+        }
       });
     });
 

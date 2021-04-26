@@ -38,6 +38,7 @@
       .input-group {
         flex-wrap: inherit;
       }
+
       #mySelector {
         width: 44px !important;
         margin-right: 30px !important;
@@ -338,7 +339,7 @@
           <div class="card-body" style="padding: 1.25rem 0 0 1.25rem;">
             <h4>Properties</h4>
             <ol class="breadcrumb">
-              <li class="breadcrumb-item"><a href="./propertyList.html" >Property List</a></li>
+              <li class="breadcrumb-item"><a href="./propertyList.html">Property List</a></li>
               <!-- <li class="breadcrumb-item active" aria-current="page">Countries</li> -->
             </ol>
             <div id="js-grid" class="pt-3"></div>
@@ -357,7 +358,7 @@
             <div class="card-body">
               <select id='mySelector' class="form-control"
                 style="float: right;width: 170px;margin-right: 115px;margin-top:23px">
-                <option selected disabled>Select Status</option>
+                <option value="hey">Select Status</option>
                 <option value='Published'>Published</option>
                 <option value='Not Published'>Not Published</option>
               </select>
@@ -460,20 +461,21 @@
     })
     //select status filter
     $(document).ready(function ($) {
-      $('table').show();
+      // $('table').show();
       $('#mySelector').change(function () {
         var selection = $(this).val();
         var dataset = $('#table tbody').find('tr');
         // show all rows first
         dataset.show();
         // filter the rows that should be hidden
-        dataset.filter(function (index, item) {
-          return $(item).find('td:nth-last-child(2)').text().split(',').indexOf(selection) === -1;
-        }).hide();
-        console.log(selection)
+        if (selection !="hey") {
+          dataset.filter(function (index, item) {
+            return $(item).find('td:nth-last-child(2)').text().split(',').indexOf(selection) === -1;
+          }).hide();
+        } else if (selection == "hey") {
+        }
       });
     });
-
 
     //cell styles
 
