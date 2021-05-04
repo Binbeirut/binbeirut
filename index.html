@@ -31,7 +31,10 @@
       .auth-form-transparent {
         width: 60% !important;
       }
+    }
 
+    a:hover {
+      text-decoration: none;
     }
   </style>
 </head>
@@ -84,8 +87,10 @@
                   <!-- <a href="#" class="auth-link text-black">Forgot password?</a> -->
                 </div>
                 <div class="my-3" float>
-                  <input class="btn btn-block btn-inverse-secondary btn-fw" type="button" value="Login" id="submit"
-                    onclick="validate()" />
+                  <a class="try" href="./pages/properties/propertyList.html">
+                    <input class="btn btn-block btn-inverse-secondary btn-fw" type="button" value="Login"
+                      id="submit" /></a>
+                  <!--in input : onclick="validate()" -->
                 </div>
                 <!-- <div class="mb-2 d-flex">
                   <button type="button" class="btn btn-facebook auth-form-btn flex-grow mr-1">

@@ -22,12 +22,6 @@
   <!-- endinject -->
   <link rel="shortcut icon" href="../../images/favicon.png" />
   <style>
-    @media (max-width: 565px) {
-      #mySelector {
-        margin-right: 75px !important;
-      }
-    }
-
     @media (max-width: 991px) {
       .brand-logo-mini {
         display: none !important;
@@ -38,11 +32,21 @@
       .input-group {
         flex-wrap: inherit;
       }
+
       #mySelector {
         width: 44px !important;
         margin-right: 30px !important;
         margin-left: 35px !important;
       }
+    }
+    
+    @media (max-width:571px){
+      #heady{
+        flex-direction: column;
+      }
+    }
+    a:hover {
+      text-decoration: none;
     }
   </style>
 </head>
@@ -155,7 +159,7 @@
               </a>
             </div>
           </li>
-                    <!-- <li class="nav-item dropdown">
+          <!-- <li class="nav-item dropdown">
             <a class="nav-link count-indicator dropdown-toggle d-flex justify-content-center align-items-center"
               id="messageDropdown" href="#" data-toggle="dropdown">
               <i class="mdi mdi-email-outline mx-0"></i>
@@ -521,28 +525,30 @@
       <!-- partial -->
       <div class="main-panel">
         <div class="content-wrapper">
-          <div class="card-body" style="padding: 1.25rem 0 0 1.25rem;">
-            <h4>Cities</h4>
-            <ol class="breadcrumb">
-              <li class="breadcrumb-item"><a href="./countries.html">Locations</a></li>
-              <li class="breadcrumb-item active" aria-current="page">Cities</li>
-            </ol>
-            <div id="js-grid" class="pt-3"></div>
-          </div>
-          <div class="toolbar">
+         <div class="card-body" id="heady" style="padding:0;display: flex;justify-content: space-between;">
             <div>
-              <a href="./add-city.html">
-                <button class="btn btn-inverse-success">Add City</button>
-              </a>
+              <h4>Cities</h4>
+              <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="./countries.html">Locations</a></li>
+                <li class="breadcrumb-item active" aria-current="page">Cities</li>
+              </ol>
+              <!-- <div id="js-grid" class="pt-3"></div> -->
             </div>
-            <div class="buttonPos">
-              <button id="button" class="btn btn-inverse-secondary">Remove</button>
+            <div style="display: flex;align-self: center;">
+              <div>
+                <a href="./add-city.html">
+                  <button class="btn btn-inverse-success">Add City</button>
+                </a>
+              </div>
+              <div class="buttonPos">
+                <button id="button" class="btn btn-inverse-secondary">Remove</button>
+              </div>
             </div>
           </div>
           <div class="card">
             <div class="card-body">
               <select id='mySelector' class="form-control"
-                style="float: right;width: 170px;margin-right: 387px;margin-top:23px">
+                style="float: right;width: 170px;margin-top:10px;height: 51px;">
                 <option value="hey">Select Status</option>
                 <option value='Published'>Published</option>
                 <option value='Not Published'>Not Published</option>
@@ -641,11 +647,11 @@
         // show all rows first
         dataset.show();
         // filter the rows that should be hidden
-        if (selection !="hey") {
+        if (selection != "hey") {
           dataset.filter(function (index, item) {
             return $(item).find('td:nth-last-child(2)').text().split(',').indexOf(selection) === -1;
           }).hide();
-        } 
+        }
       });
     });
 
@@ -763,13 +769,14 @@
     .pt-3 {
       padding-top: 0rem !important;
     }
+
     .toolbar {
       display: flex;
       justify-content: flex-end;
     }
 
     .buttonPos {
-      padding: 0 1.875rem 10px 0.8rem;
+      padding: 0 0.5rem 10px 0.8rem;
     }
 
     .fixed-table-toolbar {
@@ -802,6 +809,22 @@
       padding-top: 2px;
       padding-left: 0px;
     }
+
+    .btn-secondary {
+      width: 50px;
+    }
+
+    .fa-search {
+      display: flex;
+      justify-content: center;
+    }
+
+    .dropdown-toggle {
+      display: flex;
+      align-items: center;
+      place-content: center;
+      padding-left: 35px;
+    }
   </style>
   <!-- End plugin js for this page-->
   <!-- inject:js -->
@@ -824,7 +847,7 @@
   <!-- End plugin js for this page -->
   <!-- Custom js for this page-->
   <script src="../../js/tablesorter.js"></script>
-	<script src="../../js/tooltips.js"></script>
+  <script src="../../js/tooltips.js"></script>
   <!-- End custom js for this page-->
 </body>
 
