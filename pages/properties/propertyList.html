@@ -38,12 +38,13 @@
         margin-left: 35px !important;
       }
     }
-    
-    @media (max-width:571px){
-      #heady{
+
+    @media (max-width:571px) {
+      #heady {
         flex-direction: column;
       }
     }
+
     a:hover {
       text-decoration: none;
     }
@@ -360,7 +361,8 @@
           </div>
           <div class="card">
             <div class="card-body">
-              <select id='mySelector' class="form-control" style="float: right;width: 170px;margin-top:10px;height: 51px;">
+              <select id='mySelector' class="form-control"
+                style="float: right;width: 170px;margin-top:10px;height: 51px;">
                 <option value="hey">Select Status</option>
                 <option value='Published'>Published</option>
                 <option value='Not Published'>Not Published</option>
@@ -657,21 +659,29 @@
       padding-top: 2px;
       padding-left: 0px;
     }
-    
-    .btn-secondary{
+
+    .btn-secondary {
       width: 50px;
     }
-    .fa-search{
+
+    .fa-search {
       display: flex;
       justify-content: center;
     }
-    .dropdown-toggle{
+
+    .dropdown-toggle {
       display: flex;
       align-items: center;
       place-content: center;
       padding-left: 35px;
     }
 
+    /* table td + td + td + td + td + td + td + td + td + td +td {
+      background-color: red;
+    } */
+    td:last-child {
+      padding: 0px;
+    }
   </style>
   <!-- End plugin js for this page-->
   <!-- inject:js -->
